@@ -1,0 +1,24 @@
+.table-box {
+  border:  1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 10000px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Tahoma', sans-serif;
+  direction: rtl;
+  background:linear-gradient(#8cf3a2, #bcffed, rgb(201, 253, 214));
+}
+
+th{
+  width: 20%;
+}
+
+button{
+  padding: 2px;
+  margin: 5px;
+  background: linear-gradient(#3ce2ff, #c7c7ff);
+  border-radius: 5px;
+  font-size: 80%;
+}
+

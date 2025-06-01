@@ -1,0 +1,63 @@
+<div>
+  <form action="" [formGroup]="studentForm" (ngSubmit)="showInfo()">
+
+    <div>
+      <h5 class="text-center">فرم اطلاعات دانش آموزی</h5>
+    </div>
+
+<!--<div>-->
+<!-- <div class="col-2"> <label for="i">شماره</label></div>-->
+<!-- <div class="col-10"> <input id="i" formControlName="id" type="number"></div>-->
+<!--</div>-->
+
+    <div>
+      <div class="col-2"><label class="form-label" for="fn">نام:</label></div>
+      <div class="col-10"><input class="form-control" id="fn" formControlName="firstName" type="text"></div>
+    </div>
+
+    @if (studentForm.controls['firstName'].touched && studentForm.controls['firstName'].errors?.['required']) {
+      <div><span style="color: #d41111">*الزامی</span></div>
+    }
+
+    <div>
+      <div class="col-2"><label class="form-label" for="ln"> نام خانوادگی:</label></div>
+     <div class="col-10"><input class="form-control" id="ln" formControlName="lastName" type="text"></div>
+    </div>
+
+    @if (studentForm.controls['lastName'].touched && studentForm.controls['lastName'].errors?.['required']) {
+      <div><span style="color: #d41111">*الزامی</span></div>
+    }
+
+    <div>
+      <div class="col-2"><label class="form-label" for="tel">شماره تماس:</label></div>
+     <div class="col-10"><input class="form-control" id="tel" formControlName="phoneNumber" type="text" placeholder="*********09"></div>
+    </div>
+
+    @if (studentForm.controls['phoneNumber'].touched && studentForm.controls['phoneNumber'].errors?.['required']) {
+      <div><span style="color: #d41111">*الزامی</span></div>
+    }
+
+    <div>
+     <div class="col-2"><label class="form-label" for="sid">شماره دانش آموزی:</label></div>
+     <div class="col-10"><input class="form-control" id="sid" formControlName="studentId" type="number"></div>
+    </div>
+    @if (studentForm.controls['studentId'].touched && studentForm.controls['studentId'].errors?.['required']) {
+      <div><span style="color: #d41111">*الزامی</span></div>
+    }
+
+    <div>
+      <div class="col-2"><label class="form-label" for="birthdate">تاریخ تولد:</label></div>
+      <div class="col-10"><input class="form-control" id="birthdate" formControlName="dateOfBirth" type="date"></div>
+    </div>
+
+<!--    @if (studentForm.controls['dateOfBirth'].touched && studentForm.controls['dateOfBirth'].errors?.['required']) {-->
+<!--      <div><span style="color: #d41111">*الزامی</span></div>-->
+<!--    }-->
+
+    <div>
+      <button class="btn btn-success" (click)="showInfo()" [disabled]="!studentForm.valid">تائید</button>
+    </div>
+
+  </form>
+</div>
+

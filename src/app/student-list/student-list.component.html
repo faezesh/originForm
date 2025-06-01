@@ -1,0 +1,42 @@
+
+
+<div class="table-box">
+
+  <p-table [value]="NewStudent" [tableStyle]="{ 'min-width': '50rem' }">
+
+    <ng-template #header>
+      <tr>
+        <th style="width: 10%">ردیف</th>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>شماره تماس</th>
+        <th>شماره دانش آموزی</th>
+        <th>تاریخ تولد</th>
+        <th>عملیات</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-NewStudent let-rowData >
+      <tr>
+
+        <td>{{NewStudent.id}}</td>
+        <td>{{NewStudent?.firstName }}</td>
+        <td>{{NewStudent?.lastName }}</td>
+        <td>{{NewStudent?.phoneNumber }}</td>
+        <td>{{NewStudent?.studentId }}</td>
+        <td>{{NewStudent?.dateOfBirth }}</td>
+        <td><button class="btn btn-light" (click)="view(rowData)" #bView>نمایش</button></td>
+        <td><button class="btn btn-light" (click)="edit(rowData)" #bUpdate>ویرایش</button></td>
+        <td><button class="btn btn-light" (click)="delete(rowData)" #bDelete>حذف</button></td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+
+
+
+
+
+
+
