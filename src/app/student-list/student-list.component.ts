@@ -23,29 +23,19 @@ export class StudentListComponent implements OnInit, OnChanges {
 
   isReload: boolean = false
 
-  @Output() listStudent = new EventEmitter<StudentModel>
+  @Output() listStudent = new EventEmitter<any>
+
+  // @Output() deleteStudent = new EventEmitter<StudentModel[]>
 
   constructor(public sService: StudentService) {
   }
-
-//   aaaa(rowData: any) {
-// //     console.log(rowData)
-// //     debugger
-// //   }
-
-  // infoToForm(){
-  //   this.listToForm.emit(this.NewStudent)
-  //
-  // }
-
-
 
   ngOnChanges(changes: SimpleChanges) {
 
     // this.students.push(this.inputNewStudent)
 
-    if(this.NewStudent){
-      this.id=this.id+1
+    if (this.NewStudent) {
+      this.id = this.id + 1
     }
     console.log(this.NewStudent)
 
@@ -70,7 +60,11 @@ export class StudentListComponent implements OnInit, OnChanges {
 
   view(rowData: any) {
     let viewStudent: StudentModel = rowData
-    this.listStudent.emit(viewStudent)
+    let data = {
+      mode: 'view',
+      student: viewStudent
+    }
+    this.listStudent.emit(data)
     // console.log(viewStudent)
   }
 
@@ -80,13 +74,18 @@ export class StudentListComponent implements OnInit, OnChanges {
     // console.log(editStudent)
   }
 
-  delete(rowData: any) {
+  delete(rowData: any){
 
-    let deleteStudent: StudentModel = rowData
-    if (confirm(`از حذف ${deleteStudent.firstName} ${deleteStudent.lastName} مطمئن هستید؟`)) {
-      this.listStudent.emit(deleteStudent)
+    let delStudent: StudentModel = rowData
+    if (confirm(`از حذف ${delStudent.firstName} ${delStudent.lastName} مطمئن هستید؟`)) {
+      let index: number = this.NewStudent.indexOf(delStudent)
+      console.log(this.NewStudent)
+      this.NewStudent.splice(index,1)
+      console.log(this.NewStudent)
+      console.log(index)
     }
-    console.log(deleteStudent)
+    // this.listStudent.emit(delStudent)
+    console.log(delStudent)
   }
 }
 

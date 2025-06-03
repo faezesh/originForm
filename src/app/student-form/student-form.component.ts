@@ -1,7 +1,18 @@
-import {Component, model, EventEmitter, OnInit, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  model,
+  EventEmitter,
+  OnInit,
+  Output,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy
+} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {mapToStudentModel, StudentModel} from '../student-model';
 import {StudentService} from '../student.service';
+
 
 
 @Component({
@@ -16,10 +27,13 @@ export class StudentFormComponent implements OnInit, OnChanges {
   modelNew: StudentModel[] = []
   @Output() studentAdd = new EventEmitter<StudentModel>()
 
-  @Input() getStudentFromList = new StudentModel()
+  @Input() getStudentFromList :StudentModel | null = null
 
-  // @Input() formMode:'view' | 'edit' = 'edit'
-  disable: boolean = false
+  stUpd: StudentModel[] = []
+
+  // @Input() operate: boolean | null = null
+  @Input() formMode:'view' | 'edit' | 'create' = 'create'
+  // disable: boolean = false
 
 
   id: string = ''
@@ -39,10 +53,13 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   isDuplicate(stu: StudentModel, list: StudentModel[]): boolean {
 
+    // return this.modelNew.some(s => s.firstName === stu.firstName && s.lastName === stu.lastName &&
+    //   s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId)
 
     return this.modelNew.some(s => s.firstName === stu.firstName && s.lastName === stu.lastName &&
       s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId && s.dateOfBirth === stu.dateOfBirth)
 
+    // return this.modelNew === stu
   }
 
 
@@ -50,14 +67,21 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
     if (this.studentForm.valid) {
       console.log(this.studentForm.value)
+
       let model: StudentModel = mapToStudentModel(this.studentForm.value);
       // console.log(model)
       if (this.isDuplicate(model, this.modelNew)) {
         alert('دانش‌آموزی با همین اطلاعات قبلاً ثبت شده است.');
         return;
       }
-      this.modelNew.push(model);
+      // if (this.operate) {
+      //
+      //   // model = this.getStudentFromList
+      //   this.studentAdd.emit(this.getStudentFromList)
+      // }
+      this.modelNew.push(model)
       this.studentAdd.emit(model)
+      alert('اطلاعات با موفقیت ثبت شد.')
       this.studentForm.reset()
     } else {
       this.studentForm.markAllAsTouched(); // باعث می‌شه خطاها نشون داده بشن
@@ -71,8 +95,8 @@ export class StudentFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
 
 
-    if (this.getStudentFromList) {
-
+    if (changes['getStudentFromList'] && this.getStudentFromList) {
+      // let updateStu:StudentModel = mapToStudentModel(this.studentForm.value)
       this.studentForm.patchValue({
         firstName: this.getStudentFromList.firstName,
         lastName: this.getStudentFromList.lastName,
@@ -80,7 +104,34 @@ export class StudentFormComponent implements OnInit, OnChanges {
         studentId: this.getStudentFromList.studentId,
         dateOfBirth: this.getStudentFromList.dateOfBirth
       })
-      // this.disable = true
+      this.studentForm.patchValue(this.getStudentFromList);
+    }
+    if (this.formMode === 'view') {
+      this.studentForm.disable();
+    } else if (this.formMode === 'edit') {
+      this.studentForm.enable();}
+
+    // let updateStu:StudentModel = mapToStudentModel(this.studentForm.value)
+    // this.studentForm.patchValue({
+    //   firstName: this.getStudentFromList.firstName,
+    //   lastName: this.getStudentFromList.lastName,
+    //   phoneNumber: this.getStudentFromList.phoneNumber,
+    //   studentId: this.getStudentFromList.studentId,
+    //   dateOfBirth: this.getStudentFromList.dateOfBirth
+    // })
+    // if (this.operate) {
+    //
+    //   updateStu = this.getStudentFromList
+    //   this.studentAdd.emit(updateStu)
+    // }
+
+      // else if (!this.operate) {
+
+      // this.studentForm.disable()
+    }
+
+
+    // this.disable = true
 
     //   if(changes['formMode']){
     //   if(this.formMode === 'view'){
@@ -89,14 +140,14 @@ export class StudentFormComponent implements OnInit, OnChanges {
     //     this.studentForm.enabled
     //   }
     // }
-    }
+
 
     // this.setFormMode()
 
     // console.log('hi', this.getFromList)
     // console.log(this.studentForm)
 
-  }
+
 
   // setFormMode(): void {
   //   if (this.formMode === 'view') {
@@ -108,13 +159,11 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-
     // this.stService.getStudent().subscribe((response: any) => {
     //     debugger
     //     console.log('response:', response)
     //   }
     // )
-
 
     if (this.id !== '') {
 
@@ -139,6 +188,5 @@ export class StudentFormComponent implements OnInit, OnChanges {
     // )
 
   }
-
 
 }
