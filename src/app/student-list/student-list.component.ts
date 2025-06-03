@@ -70,17 +70,21 @@ export class StudentListComponent implements OnInit, OnChanges {
 
   edit(rowData: any) {
     let editStudent: StudentModel = rowData
-    this.listStudent.emit(editStudent)
+    let data = {
+      mode: 'edit',
+      student: editStudent
+    }
+    this.listStudent.emit(data)
     // console.log(editStudent)
   }
 
-  delete(rowData: any){
+  delete(rowData: any) {
 
     let delStudent: StudentModel = rowData
     if (confirm(`از حذف ${delStudent.firstName} ${delStudent.lastName} مطمئن هستید؟`)) {
       let index: number = this.NewStudent.indexOf(delStudent)
       console.log(this.NewStudent)
-      this.NewStudent.splice(index,1)
+      this.NewStudent.splice(index, 1)
       console.log(this.NewStudent)
       console.log(index)
     }

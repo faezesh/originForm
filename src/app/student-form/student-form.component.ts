@@ -53,13 +53,12 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   isDuplicate(stu: StudentModel, list: StudentModel[]): boolean {
 
+
+
+    return this.modelNew.some(s => s.studentId === stu.studentId)
     // return this.modelNew.some(s => s.firstName === stu.firstName && s.lastName === stu.lastName &&
-    //   s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId)
+    //   s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId && s.dateOfBirth === stu.dateOfBirth)
 
-    return this.modelNew.some(s => s.firstName === stu.firstName && s.lastName === stu.lastName &&
-      s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId && s.dateOfBirth === stu.dateOfBirth)
-
-    // return this.modelNew === stu
   }
 
 
@@ -96,7 +95,6 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
 
     if (changes['getStudentFromList'] && this.getStudentFromList) {
-      // let updateStu:StudentModel = mapToStudentModel(this.studentForm.value)
       this.studentForm.patchValue({
         firstName: this.getStudentFromList.firstName,
         lastName: this.getStudentFromList.lastName,
@@ -104,7 +102,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
         studentId: this.getStudentFromList.studentId,
         dateOfBirth: this.getStudentFromList.dateOfBirth
       })
-      this.studentForm.patchValue(this.getStudentFromList);
+      // this.studentForm.patchValue(this.getStudentFromList);
     }
     if (this.formMode === 'view') {
       this.studentForm.disable();
