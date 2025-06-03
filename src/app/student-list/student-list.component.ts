@@ -78,10 +78,11 @@ export class StudentListComponent implements OnInit, OnChanges {
     // console.log(editStudent)
   }
 
-  delete(rowData: any) {
+delete(rowData: any) {
 
     let delStudent: StudentModel = rowData
     if (confirm(`از حذف ${delStudent.firstName} ${delStudent.lastName} مطمئن هستید؟`)) {
+<<<<<<< HEAD
       let index: number = this.NewStudent.indexOf(delStudent)
       console.log(this.NewStudent)
       this.NewStudent.splice(index, 1)
@@ -89,6 +90,11 @@ export class StudentListComponent implements OnInit, OnChanges {
       console.log(index)
     }
     // this.listStudent.emit(delStudent)
+=======
+      let index : number = this.NewStudent.indexOf(delStudent)
+      this.NewStudent.splice(index,1)
+    }
+>>>>>>> 4ca23214ccaeac4f1140c1af7e798564595298c0
     console.log(delStudent)
   }
 }
