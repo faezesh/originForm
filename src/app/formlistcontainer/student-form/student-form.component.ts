@@ -1,18 +1,15 @@
 import {
   Component,
-  model,
   EventEmitter,
   OnInit,
   Output,
   Input,
   OnChanges,
   SimpleChanges,
-  OnDestroy
 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {mapToStudentModel, StudentModel} from '../student-model';
-import {StudentService} from '../student.service';
-
+import {mapToStudentModel, StudentModel} from '../../student-model';
+import {StudentService} from '../../student.service';
 
 
 @Component({
@@ -27,21 +24,15 @@ export class StudentFormComponent implements OnInit, OnChanges {
   modelNew: StudentModel[] = []
   @Output() studentAdd = new EventEmitter<StudentModel>()
 
-  @Input() getStudentFromList :StudentModel | null = null
+  @Input() getStudentFromList: StudentModel | null = null
 
-  stUpd: StudentModel[] = []
-
-  // @Input() operate: boolean | null = null
-  @Input() formMode:'view' | 'edit' | 'create' = 'create'
-  // disable: boolean = false
-
+  @Input() formMode: 'view' | 'edit' | 'create' = 'create'
 
   id: string = ''
 
   constructor(private fb: FormBuilder, private stService: StudentService) {
 
     this.studentForm = this.fb.group({
-      // id: new FormControl('',[Validators.required]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
@@ -51,16 +42,10 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   }
 
-  isDuplicate(stu: StudentModel, list: StudentModel[]): boolean {
-
-
+  isDuplicate(stu: StudentModel): boolean {
 
     return this.modelNew.some(s => s.studentId === stu.studentId)
-    // return this.modelNew.some(s => s.firstName === stu.firstName && s.lastName === stu.lastName &&
-    //   s.phoneNumber === stu.phoneNumber && s.studentId === stu.studentId && s.dateOfBirth === stu.dateOfBirth)
-
   }
-
 
   showInfo() {
 
@@ -69,15 +54,10 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
       let model: StudentModel = mapToStudentModel(this.studentForm.value);
       // console.log(model)
-      if (this.isDuplicate(model, this.modelNew)) {
+      if (this.isDuplicate(model)) {
         alert('دانش‌آموزی با همین اطلاعات قبلاً ثبت شده است.');
         return;
       }
-      // if (this.operate) {
-      //
-      //   // model = this.getStudentFromList
-      //   this.studentAdd.emit(this.getStudentFromList)
-      // }
       this.modelNew.push(model)
       this.studentAdd.emit(model)
       alert('اطلاعات با موفقیت ثبت شد.')
@@ -89,71 +69,26 @@ export class StudentFormComponent implements OnInit, OnChanges {
   }
 
 
-  // protected readonly require = require;
-
   ngOnChanges(changes: SimpleChanges) {
 
-
     if (changes['getStudentFromList'] && this.getStudentFromList) {
-      this.studentForm.patchValue({
-        firstName: this.getStudentFromList.firstName,
-        lastName: this.getStudentFromList.lastName,
-        phoneNumber: this.getStudentFromList.phoneNumber,
-        studentId: this.getStudentFromList.studentId,
-        dateOfBirth: this.getStudentFromList.dateOfBirth
-      })
-      // this.studentForm.patchValue(this.getStudentFromList);
+      // this.studentForm.patchValue({
+      //   firstName: this.getStudentFromList.firstName,
+      //   lastName: this.getStudentFromList.lastName,
+      //   phoneNumber: this.getStudentFromList.phoneNumber,
+      //   studentId: this.getStudentFromList.studentId,
+      //   dateOfBirth: this.getStudentFromList.dateOfBirth
+      // })
+      this.studentForm.patchValue(this.getStudentFromList);
     }
     if (this.formMode === 'view') {
       this.studentForm.disable();
     } else if (this.formMode === 'edit') {
-      this.studentForm.enable();}
-
-    // let updateStu:StudentModel = mapToStudentModel(this.studentForm.value)
-    // this.studentForm.patchValue({
-    //   firstName: this.getStudentFromList.firstName,
-    //   lastName: this.getStudentFromList.lastName,
-    //   phoneNumber: this.getStudentFromList.phoneNumber,
-    //   studentId: this.getStudentFromList.studentId,
-    //   dateOfBirth: this.getStudentFromList.dateOfBirth
-    // })
-    // if (this.operate) {
-    //
-    //   updateStu = this.getStudentFromList
-    //   this.studentAdd.emit(updateStu)
-    // }
-
-      // else if (!this.operate) {
-
-      // this.studentForm.disable()
+      this.studentForm.enable();
     }
 
+  }
 
-    // this.disable = true
-
-    //   if(changes['formMode']){
-    //   if(this.formMode === 'view'){
-    //     this.studentForm.disable()
-    //   }else if(this.formMode === 'edit') {
-    //     this.studentForm.enabled
-    //   }
-    // }
-
-
-    // this.setFormMode()
-
-    // console.log('hi', this.getFromList)
-    // console.log(this.studentForm)
-
-
-
-  // setFormMode(): void {
-  //   if (this.formMode === 'view') {
-  //     this.studentForm.disable();
-  //   } else if (this.formMode === 'edit') {
-  //     this.studentForm.enable();
-  //   }
-  // }
 
   ngOnInit() {
 

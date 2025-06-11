@@ -1,0 +1,6 @@
+<app-student-form (studentAdd)="receiveNewStudent($event)" [getStudentFromList]="passToForm" [formMode]="formMode"></app-student-form>
+<br>
+<br>
+<br>
+<br>
+<app-student-list [NewStudent]="studentList" (listStudent)="studentFromList($event)"></app-student-list>

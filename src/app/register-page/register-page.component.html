@@ -1,0 +1,27 @@
+<div>
+  <form>
+
+    <div><h5>فرم ثبت نام</h5></div>
+    <div><p>برای ثبت‌ نام اطلاعات کاربری خود را وارد کنید:</p></div>
+
+    <div>
+      <input type="text" formControlName="studentId" placeholder="شماره دانش آموزی">
+    </div>
+
+    <div>
+      <input type="password" formControlName="password" placeholder="رمز عبور">
+    </div>
+
+    <div>
+      <input type="password" formControlName="confirmPassword" placeholder="تکرار رمز عبور">
+    </div>
+
+    <button (click)="registerUser()">ثبت نام</button>
+
+    <div><p>قبلا ثبت نام کرده اید؟ وارد شوید</p></div>
+
+
+  </form>
+
+
+</div>

@@ -1,0 +1,51 @@
+<div>
+  <h1>مدرسه ابن سینا</h1>
+  <h3>خوش آمدید</h3>
+</div>
+
+<div>
+  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fschool-building&psig=AOvVaw0kiWePJtylhVnKcIZbS2w_&ust=1749732719435000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNj42Ly06Y0DFQAAAAAdAAAAABAN" alt="مدرسه ابن سینا">
+</div>
+
+<div>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+
+    <div><h5>ورود</h5></div>
+
+    <div><p>برای ورود اطلاعات کاربری خود را وارد کنید:</p></div>
+
+    <div>
+<!--      <label for="studentId">شماره دانش آموزی:</label>-->
+      <input type="text" id="studentId" formControlName="userName" placeholder="شماره دانش آموزی">
+    </div>
+
+    @if (loginForm.controls['studentId'].errors?.['required'] && loginForm.controls['studentId'].touched) {
+      <span>نام کاربری خود را وارد کنید.</span>
+    }
+
+    <div>
+<!--      <label>رمز عبور:</label>-->
+      <input type="password" id="password" formControlName="password" placeholder="رمز عبور">
+    </div>
+
+    @if (loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched) {
+      <span>رمز عبور را وارد کنید.</span>
+    }
+
+    <div>
+<!--      <span>مرا به خاطر بسپار</span>-->
+      <label for="rememberMe">مرا به خاطر بسپار</label>
+      <input type="checkbox" id="rememberMe" formControlName="rememberMe">
+    </div>
+
+    <div>
+      <button (click)="loginUser()" [disabled]="!loginForm.valid">ورود</button>
+    </div>
+
+    <div><p>حساب کاربری ندارید؟</p>
+    <a>ثبت نام کنید</a>
+    </div>
+
+  </form>
+
+</div>
