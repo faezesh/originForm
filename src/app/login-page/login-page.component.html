@@ -1,13 +1,5 @@
-<div>
-  <h1>مدرسه ابن سینا</h1>
-  <h3>خوش آمدید</h3>
-</div>
 
-<div>
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fschool-building&psig=AOvVaw0kiWePJtylhVnKcIZbS2w_&ust=1749732719435000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNj42Ly06Y0DFQAAAAAdAAAAABAN" alt="مدرسه ابن سینا">
-</div>
-
-<div>
+<div *ngIf="!isLogin">
   <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
 
     <div><h5>ورود</h5></div>
@@ -16,36 +8,47 @@
 
     <div>
 <!--      <label for="studentId">شماره دانش آموزی:</label>-->
-      <input type="text" id="studentId" formControlName="userName" placeholder="شماره دانش آموزی">
+      <input class="form-control" type="text" id="userName" formControlName="userName" placeholder="نام کاربری">
     </div>
 
-    @if (loginForm.controls['studentId'].errors?.['required'] && loginForm.controls['studentId'].touched) {
-      <span>نام کاربری خود را وارد کنید.</span>
+    @if (loginForm.controls['userName'].errors?.['required'] && loginForm.controls['userName'].dirty) {
+      <span>*شماره دانش آموزی خود را وارد کنید.</span>
     }
 
     <div>
 <!--      <label>رمز عبور:</label>-->
-      <input type="password" id="password" formControlName="password" placeholder="رمز عبور">
+      <input class="form-control" type="password" id="password" formControlName="password" placeholder="رمز عبور">
     </div>
 
-    @if (loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched) {
-      <span>رمز عبور را وارد کنید.</span>
+    @if (loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].dirty) {
+      <span>*رمز عبور را وارد کنید.</span>
+      <br>
+      <span>*رمز حداقل 6 کاراکتر است.</span>
     }
 
     <div>
 <!--      <span>مرا به خاطر بسپار</span>-->
       <label for="rememberMe">مرا به خاطر بسپار</label>
-      <input type="checkbox" id="rememberMe" formControlName="rememberMe">
+      <input class="rememberMe" type="checkbox" id="rememberMe" formControlName="rememberMe">
     </div>
 
     <div>
-      <button (click)="loginUser()" [disabled]="!loginForm.valid">ورود</button>
+      <button class="btn btn-success" (click)="loginUser()" [disabled]="!loginForm.valid">ورود</button>
     </div>
 
     <div><p>حساب کاربری ندارید؟</p>
-    <a>ثبت نام کنید</a>
+    <a routerLink="/register">ثبت نام کنید</a>
     </div>
 
   </form>
 
 </div>
+
+<!--<ng-template #welcome>-->
+<!--  <div class="template">-->
+<!--  <h6>خوش آمدید</h6>-->
+<!--  <button id="logOut" class="btn btn-danger" (click)="isLogOut()">خروج</button></div>-->
+<!--&lt;!&ndash;  <a routerLink="formStudent"></a>&ndash;&gt;-->
+<!--</ng-template>-->
+
+

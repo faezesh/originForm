@@ -1,0 +1,174 @@
+//.header {
+//  display: flex;
+//  flex-direction: column;
+//  background: #ffdbeb;
+//  width: auto;
+//  height: 100px;
+//}
+
+.header {
+  //background-color: #c8f1f1;
+  background-color: #ffdbeb;
+  color: #000000;
+  padding: 5px 5px;
+  display: flex;
+  align-items: center;
+  font-family: 'Tahoma', sans-serif;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  //position: relative;
+  //z-index: 1;
+  direction: rtl;
+  height: 150px;
+
+}
+#studentForm {
+  text-decoration: none;
+  background-color: #b4f4ff;
+  padding: 5px 5px;
+  margin: 20px 20px;
+  border-radius: 5px;
+  color: #000000;
+  //font-weight: bold;
+  font-size: 14px;
+}
+.login a {
+  margin-left: 1px;
+
+}
+
+.imgHeader {
+  width: 150px;
+
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  //padding-right: 1200px;
+  padding-top: 15px;
+
+}
+
+// .btn-light {
+//  background-color: #ffffff;
+//  border: 1px solid #cccccc;
+//  color: #005a9c;
+//  padding: 6px 14px;
+//  border-radius: 5px;
+//  transition: 0.3s ease;
+//  font-weight: bold;
+//
+//}
+
+.btn-danger{
+direction: ltr;
+}
+
+span{
+  padding: 10px;
+  margin: 10px;
+  direction: ltr;
+}
+#logOut {
+  padding: 2px;
+  margin: 20px;
+  width: 30%;
+  height: 50%;
+}
+
+//#studentForm {
+//  text-decoration: none;
+//  color: #055c9a;
+//  font-weight: bold;
+//  font-size: 14px;
+//}
+
+//#sf{
+//
+//  border-color: #ffffff;
+//  border-radius: 10px;
+//}
+
+.studentDashboard{
+display: flex;
+  flex-direction: column;
+  direction: rtl;
+}
+
+button {
+  padding: 5px;
+  margin: 1px;
+}
+
+h1, h3 {
+
+  color: #0da115;
+  font-weight: bold;
+}
+
+.imgSchool {
+  text-align: center;
+  transition: transform 0.1s ease-in-out
+}
+img:hover {
+  transform: scale(1.03);
+}
+
+
+img {
+  width: 800px;
+  border-radius: 10px;
+}
+
+footer {
+  background: #ffdbeb;
+  text-align: center;
+  padding: 8px;
+}
+
+
+
+///* آیکون همبرگر */
+//.hamburger-icon {
+//  font-size: 30px;
+//  cursor: pointer;
+//  position: fixed;
+//  top: 20px;
+//  right: 20px;
+//  z-index: 1001;
+//  color: #444;
+//}
+//
+///* منوی کناری */
+//.side-menu {
+//  height: 100%;
+//  width: 0;
+//  position: fixed;
+//  top: 0;
+//  right: 0;
+//  background-color: #005a9c;
+//  overflow-x: hidden;
+//  transition: 0.3s;
+//  padding-top: 60px;
+//  z-index: 1000;
+//  box-shadow: -3px 0 8px rgba(0, 0, 0, 0.1);
+//}
+//
+//.side-menu.open {
+//  width: 250px;
+//}
+//
+//.side-menu a {
+//  padding: 10px 20px;
+//  text-decoration: none;
+//  font-size: 18px;
+//  color: #333;
+//  display: block;
+//  transition: 0.2s;
+//}
+//
+//.side-menu a:hover {
+//  background-color: rgba(80, 168, 186, 0.84);
+//}
+
+

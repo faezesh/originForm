@@ -1,0 +1,29 @@
+div{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+form{
+  width: 30%;
+  border: 1px solid #ececec;
+  box-shadow: 3px 3px 5px #dddddd;
+  text-align: center;
+  background: linear-gradient(#fbfbfb, #cff9fd, #fdfdfd);
+}
+
+input{
+  width: 80%;
+}
+
+button{
+  width: 30%;
+  margin-top: 10%;
+}
+
+span{
+  font-size: 14px;
+  color: darkred;
+
+}
+

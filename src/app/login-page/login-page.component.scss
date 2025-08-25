@@ -1,0 +1,52 @@
+div{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+form{
+  width: 30%;
+  border:1px solid #cccccc;
+  box-shadow: 3px 3px 5px #dddddd;
+  text-align: center;
+  background: linear-gradient(#fefffe, #cffac7, #f5fff3);
+}
+
+input{
+  width: 80%;
+}
+
+.rememberMe{
+  width: 10%;
+}
+button{
+  width: 30%;
+  justify-items: center;
+}
+
+p{
+  font-weight: bold;
+  color: green;
+  text-align: center;
+}
+
+#logOut{
+  width: 7%;
+  margin: 12px;
+
+}
+h6{
+  text-align: right;
+}
+
+.template{
+  display: flex;
+  flex-direction: row;
+  margin: 12px;
+  padding: 5px;
+}
+
+span{
+  font-size: 13px;
+  color: #d41111;
+}

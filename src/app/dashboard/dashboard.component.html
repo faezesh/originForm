@@ -1,0 +1,62 @@
+<header>
+  <div class="header">
+
+    <div class="login">
+
+      <ng-container *ngIf="!isLoginRegister; else welcome">
+        <a routerLink="/login">
+          <button class="btn btn-light">ورود</button>
+        </a>
+        <a routerLink="/register">
+          <button class="btn btn-light">ثبت نام</button>
+        </a>
+      </ng-container>
+
+      <ng-template #welcome>
+
+        <div class="studentDashboard">
+          <button id="logOut" class="btn btn-danger" (click)="isLogOut()">خروج</button>
+          <div class="justify-content-center"><span>سلام {{ userName }}</span>
+          </div>
+          <a class="btn btn-light" id="studentForm" routerLink="/formStudent">فرم اطلاعات دانش آموزی</a>
+        </div>
+      </ng-template>
+
+<!--      <div class="hamburger-icon" (click)="toggleMenu()">&#9776;</div>-->
+
+<!--      &lt;!&ndash; 🚪 منوی کناری &ndash;&gt;-->
+<!--      <div class="side-menu" [class.open]="hamburgerMenu">-->
+<!--        <a href="#" (click)="toggleMenu()">✖</a>-->
+<!--        <a routerLink="/dashboard">خانه</a>-->
+<!--        <a routerLink="/lisson">درس ها</a>-->
+<!--        <a routerLink="/settings">تنظیمات</a>-->
+<!--        <a routerLink="/logout">خروج از سایت</a>-->
+<!--      </div>-->
+
+    </div>
+  </div>
+</header>
+<hr>
+<br>
+<div>
+  <h1 class="text-center">مدرسه امید</h1>
+  <br>
+
+  <!--  <h3 class="text-center">خوش آمدید</h3>-->
+  <br>
+  <div class="imgSchool">
+    <img
+      src="https://bing.com/th/id/BCO.b3550e08-5848-4a75-901e-66d8e0ab34ad.png"
+      alt="مدرسه امید">
+  </div>
+  <br>
+  <br>
+</div>
+
+<footer>
+  <p>تماس با ما:02122556398</p>
+  <p>آدرس:تهران، پاسداران خیابان بهار مدرسه امید</p>
+  <span>&copy;</span>
+</footer>
+
+

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {StudentModel} from './student-model';
 
@@ -36,7 +36,7 @@ export class StudentService {
   }
 
   updateStudent(id: string, st: StudentModel[]): Observable<any> {
-    return this.http.put(this.sUrl + 'update',{}, {
+    return this.http.put(this.sUrl + '/update',{}, {
       params: {
         sId: id.toString()
       }
@@ -47,4 +47,27 @@ export class StudentService {
     return this.http.delete(`${this.sUrl}/student/${id}`)
   }
 
+
+
+  login(userData:{username:string; password:string}) {
+    return this.http.post<{ token: string }>('/api/login', userData);
+  }
+  setToken(token:string){
+    localStorage.setItem('token',token);
+  }
+  getToken():string | null{
+    return  localStorage.getItem('token');
+  }
+  getUserRole():string | null{
+    const token= this.getToken();
+    if(!token)return null;
+    const payload =JSON.parse(atob(token.split('.')[1]));
+    return payload.role
+  }
+  isLoggedIn():boolean{
+    return !!this.getToken()
+  }
+  logOut(){
+    localStorage.removeItem('token');
+  }
 }

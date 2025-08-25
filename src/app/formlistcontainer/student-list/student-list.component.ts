@@ -19,6 +19,7 @@ export class StudentListComponent implements OnInit, OnChanges {
   @Input() NewStudent: StudentModel[] = []
   id: string = '0'
 
+
   @Output() listStudent = new EventEmitter<any>
 
   constructor(public sService: StudentService) {
@@ -42,6 +43,7 @@ export class StudentListComponent implements OnInit, OnChanges {
     )
 
   }
+
 
   view(rowData: any) {
     let viewStudent: StudentModel = rowData

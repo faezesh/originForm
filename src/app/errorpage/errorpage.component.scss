@@ -1,0 +1,33 @@
+h1 {
+  background: #ff4343;
+  color: aliceblue;
+  text-align: center;
+  height: 100px;
+  padding: 1%;
+}
+
+p {
+  //background: #3ce2ff;
+  font-size: 24px;
+  height: 70px;
+  padding: 10px;
+  text-align: center;
+}
+
+a {
+  align-content: center;
+  padding: 5px;
+}
+
+a:hover {
+  color: green;
+}
+
+div {
+
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  background-color: rgb(255, 212, 218);
+  width: 100%;
+}

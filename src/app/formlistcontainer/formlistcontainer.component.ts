@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
 import {StudentFormComponent} from "./student-form/student-form.component";
 import {StudentListComponent} from "./student-list/student-list.component";
 import {StudentModel} from '../student-model';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-formListContainer',
-    imports: [
-        StudentFormComponent,
-        StudentListComponent
-    ],
+  imports: [
+    StudentFormComponent,
+    StudentListComponent,
+    RouterLink
+  ],
   templateUrl: './formListContainer.component.html',
   styleUrl: './formListContainer.component.scss'
 })

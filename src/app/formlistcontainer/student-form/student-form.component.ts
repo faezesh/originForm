@@ -12,16 +12,18 @@ import {mapToStudentModel, StudentModel} from '../../student-model';
 import {StudentService} from '../../student.service';
 
 
+
 @Component({
   selector: 'app-student-form',
   imports: [ReactiveFormsModule],
   templateUrl: './student-form.component.html',
   styleUrl: './student-form.component.scss'
 })
-export class StudentFormComponent implements OnInit, OnChanges {
+export class StudentFormComponent implements OnInit, OnChanges{
 
-  public studentForm: FormGroup
+  studentForm: FormGroup
   modelNew: StudentModel[] = []
+
   @Output() studentAdd = new EventEmitter<StudentModel>()
 
   @Input() getStudentFromList: StudentModel | null = null
@@ -62,6 +64,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
       this.studentAdd.emit(model)
       alert('اطلاعات با موفقیت ثبت شد.')
       this.studentForm.reset()
+
     } else {
       this.studentForm.markAllAsTouched(); // باعث می‌شه خطاها نشون داده بشن
     }
@@ -83,16 +86,19 @@ export class StudentFormComponent implements OnInit, OnChanges {
     }
     if (this.formMode === 'view') {
       this.studentForm.disable();
+
     } else if (this.formMode === 'edit') {
       this.studentForm.enable();
-    }
 
+    }
+    // this.studentForm.reset()
   }
 
 
   ngOnInit() {
 
     // this.stService.getStudent().subscribe((response: any) => {
+
     //     debugger
     //     console.log('response:', response)
     //   }
@@ -122,4 +128,17 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   }
 
+  resetForm() {
+    // if (this.formMode === 'view') {
+    //   this.studentForm.disable();
+    //
+    // } else if (this.formMode === 'edit') {
+    //   this.studentForm.enable();
+    // }
+
+    if(this.formMode !== "view" || "edit"){
+      this.studentForm.reset()
+    }
+
+  }
 }

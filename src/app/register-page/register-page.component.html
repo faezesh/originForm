@@ -1,27 +1,44 @@
 <div>
-  <form>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
 
     <div><h5>فرم ثبت نام</h5></div>
     <div><p>برای ثبت‌ نام اطلاعات کاربری خود را وارد کنید:</p></div>
 
     <div>
-      <input type="text" formControlName="studentId" placeholder="شماره دانش آموزی">
+      <input class="form-control" type="text" formControlName="userName" placeholder="نام کاربری">
     </div>
+    @if (registerForm.controls['userName'].errors?.['required'] && registerForm.controls['userName'].dirty) {
+      <span>*الزامی</span>
+    }
 
     <div>
-      <input type="password" formControlName="password" placeholder="رمز عبور">
+      <input class="form-control" type="password" formControlName="password" placeholder="رمز عبور حداقل 6 کاراکتر" (input)="onPassword($event)">
     </div>
+    @if (registerForm.controls['password'].errors?.['required'] && registerForm.controls['password'].dirty) {
+      <span>*الزامی</span>
+    }
 
     <div>
-      <input type="password" formControlName="confirmPassword" placeholder="تکرار رمز عبور">
+      <input class="form-control" type="password" formControlName="confirmPassword" placeholder="تکرار رمز عبور" (input)="onRePassword($event)">
     </div>
+    @if (registerForm.controls['confirmPassword'].errors?.['required'] && registerForm.controls['confirmPassword'].dirty) {
+      <span>*الزامی</span>
+    }
+    <br>
+    <span [hidden]="!matchPassword || password1===''">password is match</span>
+    <span [hidden]="matchPassword || password1===''">password is not match</span>
 
-    <button (click)="registerUser()">ثبت نام</button>
+    <br>
 
-    <div><p>قبلا ثبت نام کرده اید؟ وارد شوید</p></div>
+    <button class="btn btn-info" (click)="registerUser()" [disabled]="!registerForm.valid || password1!==rePassword">ثبت نام</button>
+
+
+    <div><p>قبلا ثبت نام کرده اید؟ </p>
+
+      <a routerLink="/login"> وارد شوید</a>
+    </div>
 
 
   </form>
-
 
 </div>
